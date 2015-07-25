@@ -1,0 +1,47 @@
+/* Base */
+
+body {
+  margin: 0 auto;
+  max-width: 1200px;
+}
+
+label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 3px;
+}
+input {
+  font-size: 1.1rem;
+  min-height: 1.2rem;
+}
+
+table {
+  border-collapse: collapse;
+  font-size: 1.2rem;
+  margin: 1rem 0;
+}
+
+th {
+  border-bottom: 1px solid lightgray;
+}
+
+td {
+  padding: 6px;
+}
+
+/* Repos */
+.repo-list tr:nth-child(even) {
+  background-color: #f3f3f3;
+}
+
+/* Contributors */
+.contributors__image {
+  max-height: 240px;
+  max-width: 240px;
+}
+
+.contributors__login {
+  font-size: 1.2rem;
+  font-weight: bold;
+  padding: 1rem
+}
