@@ -1,29 +1,28 @@
 (function() {
-  var app = angular.module('githubViewer');
+  var app = angular.module('ServiceTest');
 
-  var UserController = function($scope, github, $routeParams) {
+  var UserController = function($scope, jsonService, $routeParams) {
 
     var onUserComplete = function( data ) {
       $scope.user = data;
-      github.getRepos( $scope.user )
-        .then(onRepos, onError);
+      jsonService.getPosts( $scope.user.id )
+        .then(onPosts, onError);
     };
 
-    var onRepos = function( data ) {
-      $scope.repos = data;
+    var onPosts = function( data ) {
+      $scope.posts = data;
     };
 
     var onError = function(reason) {
       $scope.error = 'Could not fetch the data';
     };
 
-    $scope.username = $routeParams.username;
-    $scope.repoSortOrder = '-stargazers_count';
-    github.getUser( $scope.username )
+    $scope.userId = $routeParams.userId;
+    jsonService.getUser( $scope.userId )
       .then( onUserComplete, onError);
 
   };
 
-  app.controller('UserController', ['$scope', 'github', '$routeParams', UserController]);
+  app.controller('UserController', ['$scope', 'jsonService', '$routeParams', UserController]);
 
 }());

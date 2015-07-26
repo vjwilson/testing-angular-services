@@ -1,9 +1,9 @@
 (function() {
-  var app = angular.module('githubViewer');
+  var app = angular.module('ServiceTest');
 
   var MainController = function($scope, $location) {
 
-    $scope.username = 'angular';
+    $scope.username = 1;
 
     $scope.search = function(username) {
       $location.path( '/user/' + username );

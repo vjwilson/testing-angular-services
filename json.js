@@ -1,21 +1,25 @@
 ( function() {
-  var github = function( $http ) {
-    var getUser = function( username ) {
-      return $http.get('https://api.github.com/users/' + username)
+  var jsonService = function( $http ) {
+    var getUser = function( userId ) {
+      console.log('userId: ', userId);
+      return $http.get('http://jsonplaceholder.typicode.com/users/' + userId)
         .then( function( response ) {
+console.log('response: ', response);
           return response.data;
         });
     };
     
-    var getRepos = function( user ) {
-      return $http.get( user.repos_url )
+    var getPosts = function( userId ) {
+      console.log('userId: ', userId);
+      return $http.get( 'http://jsonplaceholder.typicode.com/posts?userId=' + userId )
         .then( function( response ) {
+console.log('response: ', response);
           return response.data;
         });
     };
     
     var getRepo = function( username, reponame ) {
-      return $http.get('https://api.github.com/repos/' + username + '/' + reponame)
+      return $http.get('https://api.jsonService.com/repos/' + username + '/' + reponame)
         .then( function( response ) {
           return response.data;
         });
@@ -30,12 +34,12 @@
     
     return {
       getUser: getUser,
-      getRepos: getRepos,
+      getPosts: getPosts,
       getRepo: getRepo,
       getContributors: getContributors
     };
   };
   
-  var module = angular.module( 'githubViewer' );
-  module.factory( 'github', github );
+  var module = angular.module( 'ServiceTest' );
+  module.factory( 'jsonService', jsonService );
 }() );

@@ -1,31 +1,23 @@
 <div>
-  <h2>{{user.name}}</h2> 
+  <h2>{{user.name}} ({{user.username}})</h2> 
   {{error}}
-  <img class="contributors__image" ng-src="{{user.avatar_url}}" title="{{user.name}}">
+  <p>Website: <a href="{{user.website}}">{{user.website}}</a></p>
 </div>
 
-<div ng-show="repos">
-  <h2>Repositories</h2>
-  <label>Order repos by:</label>
-  <select ng-model="repoSortOrder">
-    <option value="+name">Name</option>
-    <option value="-stargazers_count">Stars</option>
-    <option value="+language">Language</option>
-  </select>
+<div ng-show="posts">
+  <h2>Posts by {{user.username}}</h2>
 
-  <table class="repo-list">
+  <table class="post-list">
     <thead>
       <tr>
-        <th>Name</th>
-        <th>Stars</th>
-        <th>Language</th>
+        <th>Title</th>
+        <th>Actions</th>
       </tr>
     </thead>
     <tbody>
-      <tr ng-repeat="repo in repos | orderBy:repoSortOrder">
-        <td><a href="#/repo/{{username}}/{{repo.name}}">{{repo.name}}</a></td>
-        <td>{{repo.stargazers_count | number}}</td>
-        <td>{{repo.language}}</td>
+      <tr ng-repeat="post in posts | orderBy:post.title">
+        <td>{{post.title | titlecase}}</td>
+        <td><a href>Read Comments</a> | <a href>Edit</a> | <a href>Delete</a></td>
       </tr>
     </tbody>
   </table>

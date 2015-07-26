@@ -1,11 +1,11 @@
 (function() {
-  var app = angular.module('githubViewer');
+  var app = angular.module('ServiceTest');
 
-  var RepoController = function($scope, github, $routeParams) {
+  var RepoController = function($scope, jsonService, $routeParams) {
 
     var onRepoComplete = function( data ) {
       $scope.repo = data;
-      github.getContributors( $scope.repo )
+      jsonService.getContributors( $scope.repo )
         .then(onContributors, onError);
     };
 
@@ -19,11 +19,11 @@
 
     $scope.username = $routeParams.username;
     $scope.reponame = $routeParams.reponame;
-    github.getRepo( $scope.username, $scope.reponame )
+    jsonService.getRepo( $scope.username, $scope.reponame )
       .then( onRepoComplete, onError);
 
   };
 
-  app.controller('RepoController', ['$scope', 'github', '$routeParams', RepoController]);
+  app.controller('RepoController', ['$scope', 'jsonService', '$routeParams', RepoController]);
 
 }());
