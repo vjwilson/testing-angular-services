@@ -1,45 +1,50 @@
 ( function() {
   var jsonService = function( $http ) {
-    var getUser = function( userId ) {
-      console.log('userId: ', userId);
+    
+    var getUsers = function() {
+      return $http.get( 'http://jsonplaceholder.typicode.com/users' )
+        .then( function( response ) {
+          return response.data;
+        });
+    };
+
+    var getOneUser = function( userId ) {
       return $http.get('http://jsonplaceholder.typicode.com/users/' + userId)
         .then( function( response ) {
-console.log('response: ', response);
           return response.data;
         });
     };
     
     var getPosts = function( userId ) {
-      console.log('userId: ', userId);
       return $http.get( 'http://jsonplaceholder.typicode.com/posts?userId=' + userId )
         .then( function( response ) {
-console.log('response: ', response);
           return response.data;
         });
     };
     
-    var getRepo = function( username, reponame ) {
-      return $http.get('https://api.jsonService.com/repos/' + username + '/' + reponame)
+    var getOnePost = function( postId ) {
+      return $http.get('http://jsonplaceholder.typicode.com/posts/' + postId )
         .then( function( response ) {
           return response.data;
         });
     };
     
-    var getContributors = function( repo ) {
-      return $http.get( repo.contributors_url )
+    var getCommentsForPost = function( postId ) {
+      return $http.get( 'http://jsonplaceholder.typicode.com/comments?postId=' + postId )
         .then( function( response ) {
           return response.data;
         });
     };
     
     return {
-      getUser: getUser,
+      getUsers: getUsers,
+      getOneUser: getOneUser,
       getPosts: getPosts,
-      getRepo: getRepo,
-      getContributors: getContributors
+      getOnePost: getOnePost,
+      getCommentsForPost: getCommentsForPost
     };
   };
-  
+
   var module = angular.module( 'ServiceTest' );
   module.factory( 'jsonService', jsonService );
 }() );

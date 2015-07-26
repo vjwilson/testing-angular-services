@@ -30,14 +30,19 @@ td {
 }
 
 /* Repos */
-.repo-list tr:nth-child(even) {
+.post-list tr:nth-child(even) {
   background-color: #f3f3f3;
 }
 
-/* Contributors */
-.contributors__image {
-  max-height: 240px;
-  max-width: 240px;
+/* Comments */
+.comments {
+  margin-left: 2rem;
+  margin-right: 2rem;
+}
+
+.comments__item {
+  border-top: 1px solid gray;
+  margin-bottom: 2rem;
 }
 
 .contributors__login {

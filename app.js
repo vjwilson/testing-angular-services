@@ -11,9 +11,9 @@
         templateUrl: 'user.html',
         controller: 'UserController'
       })
-      .when( '/repo/:username/:reponame', {
-        templateUrl: 'repo.html',
-        controller: 'RepoController'
+      .when( '/post/:postId', {
+        templateUrl: 'post.html',
+        controller: 'PostController'
       })
       .otherwise( { redirectTo: '/main' } );
     
@@ -21,6 +21,10 @@
 
   app.filter('titlecase', function () {
     return function (input) {
+      if ( !input ) {
+        return;
+      }
+
       var smallWords = /^(a|an|and|as|at|but|by|en|for|if|in|nor|of|on|or|per|the|to|vs?\.?|via)$/i;
 
       return input.replace(/[A-Za-z0-9\u00C0-\u00FF]+[^\s-]*/g, function(match, index, title){

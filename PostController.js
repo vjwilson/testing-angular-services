@@ -1,29 +1,28 @@
 (function() {
   var app = angular.module('ServiceTest');
 
-  var RepoController = function($scope, jsonService, $routeParams) {
+  var PostController = function($scope, jsonService, $routeParams) {
 
-    var onRepoComplete = function( data ) {
-      $scope.repo = data;
-      jsonService.getContributors( $scope.repo )
-        .then(onContributors, onError);
+    var onPostComplete = function( data ) {
+      $scope.post = data;
+      jsonService.getCommentsForPost( $scope.postId )
+        .then(onComments, onError);
     };
 
-    var onContributors = function( data ) {
-      $scope.contributors = data;
+    var onComments = function( data ) {
+      $scope.comments = data;
     };
 
     var onError = function(reason) {
       $scope.error = 'Could not fetch the data';
     };
 
-    $scope.username = $routeParams.username;
-    $scope.reponame = $routeParams.reponame;
-    jsonService.getRepo( $scope.username, $scope.reponame )
-      .then( onRepoComplete, onError);
+    $scope.postId = $routeParams.postId;
+    jsonService.getOnePost( $scope.postId )
+      .then( onPostComplete, onError);
 
   };
 
-  app.controller('RepoController', ['$scope', 'jsonService', '$routeParams', RepoController]);
+  app.controller('PostController', ['$scope', 'jsonService', '$routeParams', PostController]);
 
 }());

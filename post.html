@@ -1,34 +1,28 @@
 <div>
-  <h2>{{repo.name}}</h2> 
+  <h2>Post: <em>{{post.title | titlecase}}</em></h2>
   {{error}}
-  <p>Issues: <strong>{{repo.open_issues_count}}</strong></p>  
+  <h3>Text</h3>
+  <div class="post-body">
+    {{post.body}}
+  </div>
+  <p>Number of Comments: <strong>{{comments.length}}</strong></p>
 </div>
 
-<div ng-show="contributors">
-  <h2>Contributors</h2>
-  <table class="contributors">
-    <thead>
-      <tr>
-        <th>Avatar</th>
-        <th>Name</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr ng-repeat="contributor in contributors">
-        <td><img ng-src="{{contributor.avatar_url}}" title="{{contributor.login}}" class="contributors__image"></td>
-        <td class="contributors__login"><a href="#/user/{{contributor.login}}">{{contributor.login}}</a></td>
-      </tr>
-    </tbody>
-  </table>
-
+<div ng-show="comments" class="comments">
+  <h3>Comments</h3>
+  <div ng-repeat="comment in comments" class="comments__item">
+    <h4>{{comment.name | titlecase}}</h4>
+    <p><em>{{comment.email}}</em></p>
+    <p>{{comment.body}} </p>
+  </div>
 </div>
 
 <hr>
 
 <p>
-  <a href="#/user/{{repo.owner.login}}">Back to {{repo.owner.login}}</a>
+  <a href="#/user/{{post.userId}}">Back to user</a>
 </p>
 
 <p>
-  <a href="#/main">Back to search</a>
+  <a href="#/">Back to search</a>
 </p>
