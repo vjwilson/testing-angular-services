@@ -1,0 +1,28 @@
+{
+  "name": "testing-angular-services",
+  "version": "1.0.0",
+  "description": "Example of testing angular services, using ng-mock to mock respones from RESTful JSON service",
+  "main": "MainController.js",
+  "dependencies": {
+    "jasmine-core": "^2.3.4",
+    "karma": "^0.13.3",
+    "phantomjs": "^1.9.17",
+    "karma-phantomjs-launcher": "^0.2.0",
+    "karma-chrome-launcher": "^0.2.0",
+    "karma-jasmine": "^0.3.6"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "karma start karma.conf.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vjwilson/testing-angular-services.git"
+  },
+  "author": "Van Wilson",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/vjwilson/testing-angular-services/issues"
+  },
+  "homepage": "https://github.com/vjwilson/testing-angular-services#readme"
+}

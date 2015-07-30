@@ -1,0 +1,16 @@
+{
+  "name": "testing-angular-services",
+  "version": "1.0.0",
+  "homepage": "https://github.com/vjwilson/testing-angular-services",
+  "authors": [
+    "Van J. Wilson <van.wilson1992@alumni.unc.edu>"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
