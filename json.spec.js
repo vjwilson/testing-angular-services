@@ -19,16 +19,12 @@ describe( 'JSON Service', function() {
     httpBackend.verifyNoOutstandingRequest();
   });
 
-  it('should return true', function() {
-    expect(true).toBe(true);
-  });
-
   it('should get an array of users', function() {
     httpBackend.whenGET('http://jsonplaceholder.typicode.com/users')
       .respond( function(method, url, data) {
         var usersResponse = getUsersResponse();
 
-        return usersResponse;
+        return [200, usersResponse, {}];
       });
     httpBackend.expectGET('http://jsonplaceholder.typicode.com/users');
 
@@ -36,24 +32,26 @@ describe( 'JSON Service', function() {
       expect(users.length).toEqual(10);
       expect(users[1].username).toEqual('Antonette');
       expect(users[2].address.geo.lat).toEqual('-68.6102');
+    },
+    function(error) {
+      console.log('error', error);
     });
 
     httpBackend.flush();
   });
 
   it('should get one user', function() {
-    var userId = 2;
+    var userResponse = getOneUserResponse();
 
-    httpBackend.whenGET('http://jsonplaceholder.typicode.com/users/' + userId)
+    httpBackend.whenGET('http://jsonplaceholder.typicode.com/users/' + userResponse.id)
       .respond( function(method, url, data) {
-        var usersResponse = getOneUserResponse();
 
-        return usersResponse;
+        return [200, userResponse, {}];
       });
-    httpBackend.expectGET('http://jsonplaceholder.typicode.com/users/' + userId);
+    httpBackend.expectGET('http://jsonplaceholder.typicode.com/users/' + userResponse.id);
 
-    jsonService.getOneUser(userId).then(function(user) {
-      expect(user.length).toBeDefined();
+    jsonService.getOneUser(userResponse.id).then(function(user) {
+      expect(user).toBeDefined();
       expect(user.id).toEqual(2);
       expect(user.email).toEqual('Shanna@melissa.tv');
       expect(user.company.name).toEqual('Deckow-Crist');
